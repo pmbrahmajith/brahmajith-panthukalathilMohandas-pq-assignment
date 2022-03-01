@@ -1,0 +1,148 @@
+@import "assets/styles/core.scss";
+@import "assets/styles/theme.scss";
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: $font-size-small;
+    min-height: 100vh;
+    min-height: -moz-available;
+    min-height: fill-available;
+    min-height: -webkit-fill-available;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    @include border-left($border-base, $border-default-pattern, $color-grey-4);
+    @include border-right($border-base, $border-default-pattern, $color-grey-4);
+    width: $gutter-base * 2;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $color-grey-6;
+    width: 10px;
+    border-radius: 10px;
+}
+
+:root {
+    font-family: "Roboto", sans-serif;
+    font-size: $font-size-small;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.word-break-all {
+    word-break: break-all;
+}
+
+.padding-0 {
+    padding: $gutter-zero;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.padding-15 {
+    padding: $gutter-base * 3;
+}
+
+.padding-20 {
+    padding: $gutter-base * 4;
+}
+
+.padding-top-10 {
+    padding-top: $gutter-base * 2;
+}
+
+.padding-top-bottom-15 {
+    padding: $gutter-base * 3 $gutter-zero;
+}
+
+.padding-top-bottom-10 {
+    padding: $gutter-base * 2 $gutter-zero;
+}
+
+.margin-right-10 {
+    margin-right: $gutter-base * 2;
+}
+
+.margin-5 {
+    margin: 5px;
+}
+
+.margin-10 {
+    margin: 10px;
+}
+
+.margin-15 {
+    margin: 15px;
+}
+
+.margin-20 {
+    margin: 20px;
+}
+
+.margin-top-10 {
+    margin-top: $gutter-base * 2;
+}
+
+.margin-top-15 {
+    margin-top: $gutter-base * 3;
+}
+
+.text-bold-uppercase {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.text-bold-uppercase {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.text-bold-capitalize {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-capitalize-first::first-letter {
+    text-transform: capitalize;
+}
+
+.page-title {
+    font-size: $font-size-large;
+    font-weight: $font-weight-bold;
+}
+
+.section-title {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-bold;
+}

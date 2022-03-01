@@ -1,0 +1,26 @@
+@mixin border-default($size, $type, $color) {
+  border-width: $size;
+  border-style: $type;
+  border-color: $color;
+}
+
+@mixin border-top-bottom($size, $type, $color) {
+  border-top: $size $type $color;
+  border-bottom: $size $type $color;
+}
+
+@mixin border-top($size, $type, $color) {
+  border-top: $size $type $color;
+}
+
+@mixin border-bottom($size, $type, $color) {
+  border-bottom: $size $type $color;
+}
+
+@mixin border-left($size, $type, $color) {
+  border-left: $size $type $color;
+}
+
+@mixin border-right($size, $type, $color) {
+  border-right: $size $type $color;
+}

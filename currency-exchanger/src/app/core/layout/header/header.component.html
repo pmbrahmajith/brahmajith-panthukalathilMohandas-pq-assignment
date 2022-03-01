@@ -1,0 +1,12 @@
+<div class="header-container mat-elevation-z1" fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayoutAlign="center center" fxLayout="row" fxLayoutGap="20px">
+        <div class="block-height" fxLayoutAlign="center center">
+            <mat-icon class="icon-color">find_replace</mat-icon>
+            Currency<b>Exchange</b>
+        </div>
+        <app-navbar *ngIf="authService.isLoggedIn"></app-navbar>
+    </div>
+    <div fxLayoutAlign="center center" class="block-height" *ngIf="authService.isLoggedIn">
+        <button mat-button color="primary" class="text-uppercase" (click)="onLogout()">logout</button>
+    </div>
+</div>

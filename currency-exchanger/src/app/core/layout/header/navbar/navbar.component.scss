@@ -1,0 +1,18 @@
+@import "core";
+
+.nav-bar {
+    .menu {
+        height: 60px;
+        cursor: pointer;
+        text-decoration: none;
+        color: $color-grey;
+        @include border-bottom($border-base * 2, $border-default-pattern, $color-white);
+    }
+    .menu:hover {
+        color: $color-black;
+    }
+    .active-link {
+        color: $color-black;
+        @include border-bottom($border-base * 2, $border-default-pattern, $color-blue);
+    }
+}

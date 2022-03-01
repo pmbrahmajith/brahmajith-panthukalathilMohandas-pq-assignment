@@ -1,0 +1,36 @@
+@import "core";
+
+.history-table-container {
+    .info-icon {
+        color: $color-grey;
+        font-size: $font-size-medium;
+    }
+
+    .btn-height {
+        min-height: 45px;
+    }
+
+    .view-btn {
+        @extend .btn-height;
+        color: $color-blue;
+        .icon {
+            color: $color-blue;
+            font-size: $font-size-small;
+            line-height: 25px;
+        }
+    }
+
+    .delete-btn {
+        @extend .btn-height;
+        color: $color-red;
+        .icon {
+            color: $color-red;
+            font-size: $font-size-small;
+            line-height: 25px;
+        }
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+}

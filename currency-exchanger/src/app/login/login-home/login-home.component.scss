@@ -1,0 +1,8 @@
+@import "core";
+
+.login-container {
+    height: calc(100vh - 50px);
+    .login-btn {
+        min-width: 180px;
+    }
+}

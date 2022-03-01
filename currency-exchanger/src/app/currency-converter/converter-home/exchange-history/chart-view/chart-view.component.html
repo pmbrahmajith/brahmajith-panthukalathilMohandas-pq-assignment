@@ -1,0 +1,14 @@
+<div id="chart-container" class="chart-container">
+    <ng-container *ngIf="chartData?.length; else no_records_template">
+        <canvas id="canvasSBML" [ngClass]="'chart'" baseChart [chartType]="chartType" [datasets]="chartData"
+            [options]="chartOptions" [legend]=false [colors]="chartColors" [labels]="chartLabels">
+        </canvas>
+    </ng-container>
+    <ng-template #no_records_template>
+        <div fxLayout="row" fxLayoutGap="15px" class="text-align-center full-width no-records"
+            fxLayoutAlign="center center">
+            <mat-icon class="info-icon">info</mat-icon>
+            <p class="text-size-small">No records found!</p>
+        </div>
+    </ng-template>
+</div>

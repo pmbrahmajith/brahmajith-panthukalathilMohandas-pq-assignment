@@ -1,0 +1,13 @@
+@import "core";
+
+.chart-container {
+    min-height: 250px;
+    .info-icon {
+        color: $color-grey;
+        font-size: $font-size-medium;
+    }
+    .no-records {
+        background-color: $color-white;
+        min-height: 100px;
+    }
+}

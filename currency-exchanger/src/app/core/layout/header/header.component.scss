@@ -1,0 +1,12 @@
+@import "core";
+
+.header-container {
+    padding: $gutter-zero $gutter-base * 33;
+    .icon-color {
+        color: $color-blue;
+        padding-right: $gutter-base;
+    }
+    .block-height {
+        height: 60px;
+    }
+}

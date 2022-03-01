@@ -1,0 +1,30 @@
+<div class="exchange-history-container" fxLayout="column">
+    <span class="text-capitalize section-title"> exchange history</span>
+    <div class="margin-top-15">
+        <div fxFlex="50%" fxLayoutAlign="space-between center" fxLayout="row">
+            <mat-form-field appearance="standard">
+                <mat-label class="text-capitalize">duration</mat-label>
+                <mat-select [(ngModel)]="selectedDuration" (ngModelChange)="onDurationChange()">
+                    <mat-option *ngFor="let duration of durationFilter" [value]="duration.code">
+                        {{duration.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-radio-group fxLayout="row" fxLayoutGap="35px" [(ngModel)]="selectedView" color="primary">
+                <ng-container *ngFor="let view of viewList">
+                    <mat-radio-button [value]="view.code" class="text-capitalize">
+                        {{view.name}}
+                    </mat-radio-button>
+                </ng-container>
+            </mat-radio-group>
+        </div>
+    </div>
+    <ng-container *ngIf="(selectedView===viewList[ 0 ].code)">
+        <app-table-view [exchangeHistoryList]="exchangeHistoryList"
+            [exchangeHistoryStatisticsData]="exchangeHistoryStatisticsData"></app-table-view>
+    </ng-container>
+    <ng-container *ngIf="(selectedView===viewList[ 1 ].code)">
+        <app-chart-view [exchangeHistoryList]="exchangeHistoryList"
+            [exchangeHistoryStatisticsData]="exchangeHistoryStatisticsData"></app-chart-view>
+    </ng-container>
+</div>

@@ -1,0 +1,12 @@
+@import "core";
+
+.home-container {
+    padding: $gutter-base * 6 $gutter-base * 33;
+    background-color: $color-grey-3;
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    .divider {
+        margin-top: $gutter-base * 2;
+        margin-bottom: $gutter-base * 2;
+    }
+}

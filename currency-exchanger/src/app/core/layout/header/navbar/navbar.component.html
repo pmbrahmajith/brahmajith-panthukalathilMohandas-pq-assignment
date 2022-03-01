@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" class="nav-bar" fxLayoutGap="30px">
+    <div *ngFor="let menu of menuList; let i=index;">
+        <a fxLayoutAlign="center center" class="menu text-uppercase padding-20" [routerLinkActive]="''"
+            [ngClass]="rla.isActive?'active-link':''" [routerLinkActiveOptions]="{ exact: false }"
+            [routerLink]="[menu.link]" #rla="routerLinkActive">
+            {{ menu.name }}
+        </a>
+    </div>
+</div>

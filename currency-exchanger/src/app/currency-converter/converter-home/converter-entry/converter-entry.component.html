@@ -1,0 +1,51 @@
+<div class="currency-converter-container" fxLayout="column" fxLayoutGap="20px">
+    <form [formGroup]="currencyForm">
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center center">
+            <mat-form-field appearance="standard" class="full-width" fxFlex="30%">
+                <mat-label class="text-capitalize">amount</mat-label>
+                <input type="text" matInput id="amount" formControlName="amount" required>
+                <mat-error>Enter valid amount</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="full-width" fxFlex="25%">
+                <mat-label class="text-capitalize">from</mat-label>
+                <input type="text" matInput id="from-currency-code" formControlName="fromCurrencyCode" required>
+                <mat-error>Enter from currency code</mat-error>
+            </mat-form-field>
+            <button type="button" mat-stroked-button fxLayoutAlign="center center" color="primary" fxFlex="5%"
+                class="btn-height compare-btn" (click)="onSwap()">
+                <mat-icon class="icon-color">compare_arrows</mat-icon>
+            </button>
+            <mat-form-field appearance="standard" class="full-width" fxFlex="25%">
+                <mat-label class="text-capitalize">to</mat-label>
+                <input type="text" matInput id="to-currency-code" formControlName="toCurrencyCode" required>
+                <mat-error>Enter to currency code</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!currencyForm.valid" id="convert-btn"
+                class="text-uppercase btn-height convert-btn" fxFlex="15%" (click)="onConvertClick()">convert</button>
+        </div>
+    </form>
+    <div *ngIf="errorTxt; else conversion_content" fxLayoutAlign="center center">
+        <mat-error class="error-txt" id="error-txt">{{errorTxt}}</mat-error>
+    </div>
+    <ng-template #conversion_content>
+        <div fxLayout="row" fxLayoutGap="15px" class="currency-rate-txt text-uppercase"
+            *ngIf="currencyConversionDetails?.convertedAmount" fxLayoutAlign="center center">
+            <span class="word-break-all">{{currencyConversionDetails?.amount}}
+                {{currencyConversionDetails.fromCurrencyRateCode}}</span>
+            <span> =</span>
+            <b class="converted-amount-text word-break-all"> {{currencyConversionDetails?.convertedAmount }}
+                {{currencyConversionDetails.toCurrencyRateCode}}</b>
+        </div>
+        <div *ngIf="isLoader" fxLayoutAlign="center center" class="loader">
+            <mat-spinner></mat-spinner>
+        </div>
+        <div *ngIf="currencyConversionDetails?.convertedAmount" fxLayout="column" fxLayoutAlign="center center"
+            fxLayoutGap="8px">
+            <span> 1 {{currencyConversionDetails.fromCurrencyRateCode}} =
+                {{currencyConversionDetails.toConversionRate}} {{currencyConversionDetails.toCurrencyRateCode}}</span>
+            <span> 1 {{currencyConversionDetails.toCurrencyRateCode}} =
+                {{currencyConversionDetails.fromConversionRate}}
+                {{currencyConversionDetails.fromCurrencyRateCode}}</span>
+        </div>
+    </ng-template>
+</div>

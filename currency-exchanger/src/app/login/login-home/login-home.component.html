@@ -1,0 +1,31 @@
+<div class="login-container" fxLayoutAlign="center center">
+    <form [formGroup]="loginForm">
+        <mat-card class="padding-0">
+            <mat-card-content>
+                <div class="padding-15">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label class="text-capitalize">username</mat-label>
+                        <input type="text" matInput id="username" formControlName="userName" required>
+                        <mat-error>Enter valid username</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width padding-top-10">
+                        <mat-label class="text-capitalize">password</mat-label>
+                        <input [type]="passwordToggle?'text':'password'" matInput id="password"
+                            formControlName="password" required>
+                        <mat-icon matSuffix (click)="passwordToggle=!passwordToggle">
+                            {{passwordToggle?'visibility_off':'visibility'}}</mat-icon>
+                        <mat-error>Enter valid password</mat-error>
+                    </mat-form-field>
+                    <div class="padding-top-10">
+                        <div fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="15px">
+                            <button id="login-btn" [disabled]="!loginForm.valid" type="button" color="primary"
+                                mat-raised-button class="login-btn text-bold-uppercase" (click)="onLogin()">login
+                            </button>
+                            <mat-error id="login-error-txt" *ngIf="loginErrorTxt">{{loginErrorTxt}}</mat-error>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

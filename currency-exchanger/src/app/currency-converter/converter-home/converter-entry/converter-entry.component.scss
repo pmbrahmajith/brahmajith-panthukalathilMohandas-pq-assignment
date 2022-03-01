@@ -1,0 +1,31 @@
+@import "core";
+
+.currency-converter-container {
+    .convert-btn {
+        margin-top: $gutter-base * 3 !important;
+    }
+
+    .btn-height {
+        height: 40px;
+        min-width: 20px;
+    }
+
+    .compare-btn {
+        background-color: $color-white;
+    }
+
+    .error-txt {
+        font-size: $font-size-medium;
+    }
+
+    .currency-rate-txt {
+        font-size: $font-size-large;
+        .converted-amount-text {
+            color: $color-green;
+        }
+    }
+
+    .loader {
+        min-height: 100px;
+    }
+}
