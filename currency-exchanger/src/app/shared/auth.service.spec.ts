@@ -24,8 +24,7 @@ describe('AuthService', () => {
   it('[AuthService-fetchApiDetails ] - should check the fetchApiDetails',
     () => {
       const testData = {
-        apiUrl: "https://api.nomics.com/v1",
-        apiKey: "bff7e581f9e78eaf3c0bcd3172964e57d097b16a"
+        apiUrl: "https://api.exchangerate.host/"
       };
       authService.fetchApiDetails().subscribe((resp: any) => {
         expect(testData).toBe(resp);

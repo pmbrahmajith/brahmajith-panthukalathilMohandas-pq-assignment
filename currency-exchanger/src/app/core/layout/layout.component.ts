@@ -25,7 +25,6 @@ export class LayoutComponent implements OnInit {
   fetchApiDetails() {
     this.authService.fetchApiDetails().subscribe((resp: any) => {
       this.authService.apiUrl = resp.apiUrl;
-      this.authService.apiKey = resp.apiKey;
       this.authService.isLoggedIn = (localStorage.getItem('isLoggedIn') === 'true');
     });
   }

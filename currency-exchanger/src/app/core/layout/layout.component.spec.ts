@@ -39,11 +39,4 @@ describe('LayoutComponent', () => {
       })
     }));
 
-  it('[LayoutComponent-api ] - should check apiKey to be the value in appsettings.json',
-    inject([ AuthService ], (authService: AuthService) => {
-      authService.fetchApiDetails().subscribe(resp => {
-        expect(authService.apiKey).toBe('bff7e581f9e78eaf3c0bcd3172964e57d097b16a');
-      });
-    }));
-
 });

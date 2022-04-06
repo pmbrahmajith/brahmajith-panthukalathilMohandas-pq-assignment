@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 export class AuthService {
   public isLoggedIn!: boolean;
   public apiUrl!: string;
-  public apiKey!: string;
 
   constructor(
     private http: HttpClient
