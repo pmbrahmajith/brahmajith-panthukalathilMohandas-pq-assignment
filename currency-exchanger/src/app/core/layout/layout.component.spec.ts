@@ -35,7 +35,7 @@ describe('LayoutComponent', () => {
   it('[LayoutComponent-api ] - should check apiUrl to be the value in appsettings.json',
     inject([ AuthService ], (authService: AuthService) => {
       authService.fetchApiDetails().subscribe(resp => {
-        expect(authService.apiUrl).toBe('https://api.nomics.com/v1/');
+        expect(authService.apiUrl).toBe('https://api.exchangerate.host/');
       })
     }));
 
