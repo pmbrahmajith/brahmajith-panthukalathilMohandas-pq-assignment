@@ -15,9 +15,10 @@ export class CurrencyConverterService {
     private authService: AuthService
   ) { }
 
-  getExchangeRate(): Observable<any> {
-    const url = `${this.authService.apiUrl}exchange-rates`;
-    const params: HttpParams = new HttpParams().append('key', this.authService.apiKey);
+  getExchangeRate(currencyFormObj: any): Observable<any> {
+    const url = `${this.authService.apiUrl}convert`;
+    const params: HttpParams = new HttpParams().append('from', currencyFormObj.fromCurrencyCode.toUpperCase())
+      .append('to', currencyFormObj.toCurrencyCode.toUpperCase());
     return this.http
       .get(url, { params })
       .pipe(response => {
@@ -26,9 +27,9 @@ export class CurrencyConverterService {
   }
 
   getExchangeHistory(exchangeHistoryObj: any): Observable<any> {
-    const url = `${this.authService.apiUrl}exchange-rates/history`;
-    const params: HttpParams = new HttpParams().append('key', this.authService.apiKey).
-      append('currency', exchangeHistoryObj.currency).append('start', exchangeHistoryObj.start).append('end', exchangeHistoryObj.end);
+    const url = `${this.authService.apiUrl}timeseries`;
+    const params: HttpParams = new HttpParams().append('start_date', exchangeHistoryObj.start).
+      append('end_date', exchangeHistoryObj.end);
     return this.http
       .get(url, { params })
       .pipe(response => {

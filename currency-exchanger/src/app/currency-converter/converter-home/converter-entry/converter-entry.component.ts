@@ -72,25 +72,21 @@ export class ConverterEntryComponent implements OnInit, OnChanges, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    this.subscription = this.currencyConverterService.getExchangeRate().subscribe(currencyList => {
-      this.saveTransaction(currencyForm);
-      const fromCurrencyDetails = currencyList.filter((currencyData: any) =>
-        currencyData.currency.toLowerCase() === currencyForm.fromCurrencyCode.toLowerCase());
-      const toCurrencyDetails = currencyList.filter((currencyData: any) =>
-        currencyData.currency.toLowerCase() === currencyForm.toCurrencyCode.toLowerCase());
-      if (fromCurrencyDetails?.length && toCurrencyDetails?.length) {
+    this.subscription = this.currencyConverterService.getExchangeRate(currencyForm).subscribe(currencyConversionRateDetails => {
+      if (currencyConversionRateDetails?.result) {
+        this.saveTransaction(currencyForm);
         this.currencyConversionDetails = {
-          fromCurrencyRate: fromCurrencyDetails[ 0 ].rate,
-          fromCurrencyRateCode: fromCurrencyDetails[ 0 ].currency,
-          toCurrencyRate: toCurrencyDetails[ 0 ].rate,
-          toCurrencyRateCode: toCurrencyDetails[ 0 ].currency,
+          fromCurrencyRate: currencyConversionRateDetails.result,
+          fromCurrencyRateCode: currencyForm.fromCurrencyCode.toUpperCase(),
+          toCurrencyRate: 1,
+          toCurrencyRateCode: currencyForm.toCurrencyCode.toUpperCase(),
           convertedAmount: this.currencyFormatPipe.transform((currencyForm.amount
-            * (fromCurrencyDetails[ 0 ].rate / toCurrencyDetails[ 0 ].rate)),
-            toCurrencyDetails[ 0 ].currency),
+            * (currencyConversionRateDetails.result / 1)),
+            currencyForm.amount),
           amount: currencyForm.amount,
-          toConversionRate: (1 * (fromCurrencyDetails[ 0 ].rate / toCurrencyDetails[ 0 ].rate)).toFixed(6),
-          fromConversionRate: (1 * (toCurrencyDetails[ 0 ].rate / fromCurrencyDetails[ 0 ].rate)).toFixed(6)
-        }
+          toConversionRate: currencyConversionRateDetails.result,
+          fromConversionRate: (1 * (1 / currencyConversionRateDetails.result)).toFixed(6)
+        };
         this.currencyConverterService.exchangeHistorySubject.next(this.currencyConversionDetails);
       } else {
         this.errorTxt = 'Please retry with valid currency codes.';

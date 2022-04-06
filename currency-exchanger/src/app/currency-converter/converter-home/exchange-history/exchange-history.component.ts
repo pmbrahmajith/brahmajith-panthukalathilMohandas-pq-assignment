@@ -45,8 +45,8 @@ export class ExchangeHistoryComponent implements OnInit {
     if (this.currencyConversionDetails?.fromCurrencyRateCode && this.selectedDuration) {
       const exchangeHistoryObj = {
         currency: this.currencyConversionDetails.fromCurrencyRateCode.toUpperCase(),
-        start: `${this.getFormattedDate(this.selectedDuration)}T00:00:00Z`,
-        end: `${this.getFormattedDate()}T00:00:00Z`
+        start: `${this.getFormattedDate(this.selectedDuration)}`,
+        end: `${this.getFormattedDate()}`
       }
 
       // nomics license doesnot allow parallel api call in 1 sec so adding timeout
@@ -54,8 +54,15 @@ export class ExchangeHistoryComponent implements OnInit {
         if (this.subscription) {
           this.subscription.unsubscribe();
         }
-        this.subscription = this.currencyConverterService.getExchangeHistory(exchangeHistoryObj).subscribe((exchangeHistoryList: any) => {
-          exchangeHistoryList.reverse();
+        this.subscription = this.currencyConverterService.getExchangeHistory(exchangeHistoryObj).subscribe((exchangeHistoryRateList: any) => {
+          let exchangeHistoryList = [];
+          for (var key in exchangeHistoryRateList.rates) {
+            exchangeHistoryList.push({
+              timestamp: key,
+              rate: ((1 * exchangeHistoryRateList.rates[ key ]?.[ this.currencyConversionDetails.toCurrencyRateCode.toUpperCase() ])
+                / exchangeHistoryRateList.rates[ key ]?.[ this.currencyConversionDetails.fromCurrencyRateCode.toUpperCase() ])
+            });
+          }
           let rateArray: any = [];
           exchangeHistoryList.forEach((data: any) => {
             const historyData = {
@@ -65,6 +72,7 @@ export class ExchangeHistoryComponent implements OnInit {
             this.exchangeHistoryList.push(historyData);
             rateArray.push(parseFloat(historyData.exchangeRate));
           });
+          this.exchangeHistoryList.reverse();
           const sum = rateArray.reduce((a: any, b: any) => a + b, 0);
           this.exchangeHistoryStatisticsData =
             [
